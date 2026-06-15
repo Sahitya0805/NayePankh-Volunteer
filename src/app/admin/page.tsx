@@ -17,10 +17,8 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetch('/api/admin')
       .then((res) => res.json())
-      .then((jsonData) => {
-        setData(jsonData);
-        setLoading(false);
-      });
+      .then((jsonData) => { setData(jsonData); setLoading(false); })
+      .catch(() => setLoading(false));
   }, []);
 
   const handleGenerate = () => {
@@ -28,22 +26,13 @@ export default function AdminDashboard() {
     setTimeout(() => { setIsGenerating(false); setGenerated(true); setTimeout(() => setGenerated(false), 3000); }, 2000);
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-700"></div>
-          <p className="text-stone-500 font-medium">Loading organizational metrics...</p>
-        </div>
-      </div>
-    );
-  }
+  if (loading) return <div className="min-h-screen bg-stone-50 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-700"></div></div>;
 
   return (
     <div className="min-h-screen bg-stone-50">
       <header className="bg-white border-b border-stone-200 sticky top-0 z-40">
         <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 rounded-full bg-emerald-700 flex items-center justify-center"><Heart className="w-4 h-4 text-white" fill="currentColor" /></div>
             <span className="font-bold text-stone-900 hidden sm:block">NayePankh Admin Portal</span>
           </Link>
@@ -62,11 +51,7 @@ export default function AdminDashboard() {
             <nav className="space-y-1 bg-white rounded-xl border border-stone-200 p-2">
               {[{ id: 'overview', label: 'Overview', icon: 'LayoutDashboard' }, { id: 'volunteers', label: 'Volunteers', icon: 'Users' }, { id: 'events', label: 'Events', icon: 'Calendar' }, { id: 'reports', label: 'Reports', icon: 'FileText' }, { id: 'settings', label: 'Settings', icon: 'Settings' }].map((item: any) => {
                 const Icon = iconMap[item.icon] || LayoutDashboard;
-                return (
-                  <button key={item.id} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer text-stone-600 hover:bg-stone-50 hover:text-emerald-700">
-                    <Icon className="w-4 h-4" />{item.label}
-                  </button>
-                );
+                return <button key={item.id} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer text-stone-600 hover:bg-stone-50 hover:text-emerald-700"><Icon className="w-4 h-4" />{item.label}</button>;
               })}
             </nav>
           </aside>

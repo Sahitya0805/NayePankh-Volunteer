@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-
 export async function GET() {
   await new Promise((resolve) => setTimeout(resolve, 800));
-  
   return NextResponse.json({
     metrics: [
       { label: 'Total Volunteers', value: 2543, change: '+12%', icon: 'Users', color: 'text-emerald-700', bg: 'bg-emerald-50' },

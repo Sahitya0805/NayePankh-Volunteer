@@ -29,10 +29,7 @@ export default function RegisterPage() {
       return;
     }
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      window.location.href = '/dashboard';
-    }, 1500);
+    setTimeout(() => { setIsLoading(false); window.location.href = '/dashboard'; }, 1500);
   };
 
   return (
@@ -41,9 +38,7 @@ export default function RegisterPage() {
         <div className="bg-white rounded-2xl shadow-xl border border-stone-200 p-8">
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
-              <div className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Heart className="w-6 h-6 text-white" fill="currentColor" />
-              </div>
+              <div className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center group-hover:scale-105 transition-transform"><Heart className="w-6 h-6 text-white" fill="currentColor" /></div>
               <span className="text-2xl font-bold text-stone-900">Naye<span className="text-emerald-700">Pankh</span></span>
             </Link>
             <h1 className="text-2xl font-bold text-stone-900 mb-2">Join Our Team</h1>

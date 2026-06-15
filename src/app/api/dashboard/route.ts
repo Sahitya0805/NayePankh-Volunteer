@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
-
 export async function GET() {
-  // Simulate database fetch delay
   await new Promise((resolve) => setTimeout(resolve, 800));
-  
   return NextResponse.json({
     stats: [
       { label: 'Hours Contributed', value: 42, icon: 'Clock', color: 'text-emerald-700', bg: 'bg-emerald-50' },
